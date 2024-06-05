@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <title>Eye Disease Prediction</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <a href="#" class="logo">
+        <img src="logo.png" alt="">
+    </a>
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}">Prediksi Gambar</a>
+        <a href="{{ url_for('hasil') }}">Hasil</a>
+        <a href="{{ url_for('anggota') }}">Anggota</a>
+        <a href="{{ url_for('beranda') }}">Beranda</a>
+    </nav>
+</header>
+<button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+<div class="menu">
+    <a href="#" class="menu-item" onclick="showPrediction()">Prediksi Gambar</a>
+    <a href="#" class="menu-item" onclick="showModelPerformance()">Lihat Persentase Gambar Tiap Model</a>
+    <a href="#" class="menu-item" onclick="showMembers()">Lihat Anggota</a>
+</div>
+
+<div class="container">
+   <h1>inin anggota</h1>
+</div>
+
+</body>
+</html>

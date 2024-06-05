@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    /* Tambahkan efek hover untuk button */
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    /* Atur ukuran gambar yang di-upload menjadi 2rem */
+    max-width: 2rem;
+    max-height: 2rem;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    /* Tambahkan warna latar belakang hijau untuk h2 */
+    background-color: #28a745;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    /* Tengahkan teks */
+    text-align: center;
+}
+
+h2 span {
+    /* Buat teks di dalam h2 berada di tengah */
+    display: inline-block;
+}
+
+/* Atur tampilan button */
+input[type="file"]::file-selector-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    /* Tambahkan efek hover untuk button */
+    transition: background-color 0.3s;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #0056b3;
+}
+.menu-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000; /* Pastikan tombol tetap di atas konten lainnya */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333; /* Warna ikon burger */
+}
+
+/* Atur tampilan menu */
+.menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #fff; /* Warna latar belakang menu */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Pastikan menu di atas konten lainnya */
+    padding-top: 60px; /* Atur padding agar menu tidak menutupi tombol burger */
+}
+
+.menu.active {
+    display: block;
+}
+
+/* Atur tampilan item menu */
+.menu-item {
+    padding: 10px;
+    font-size: 18px;
+    color: #333; /* Warna teks menu */
+    text-decoration: none;
+    display: block;
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0; /* Warna latar belakang item menu saat dihover */
+}
