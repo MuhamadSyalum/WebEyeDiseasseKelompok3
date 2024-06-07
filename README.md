@@ -1,2 +1,2 @@
-# WebEyeDiseasseKelompok3
-Web Sederhana dalam memprediksi penyakit mata
+# STECHOQTA
+application web tugas akhir kelompok 3 eye disease

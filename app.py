@@ -14,7 +14,7 @@ UPLOAD_FOLDER = 'static/uploads/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Load the pre-trained Keras model
-model = load_model('mobilenetv2.h5')
+model = load_model('mobile-netv2.h5')
 
 # Define a function to load and preprocess the image
 def preprocess_image(img_path):
@@ -29,131 +29,131 @@ condition_explanations = {
     'cataract': Markup('''   <h1>Katarak</h1>
     <p>Katarak adalah kondisi di mana lensa mata menjadi keruh, menyebabkan penglihatan menjadi kabur atau buram. Ini adalah salah satu penyebab umum gangguan penglihatan pada orang dewasa.</p>
 
-    <h2>Penyebab Katarak</h2>
+    <h1>Penyebab Katarak</h1>
     <p>Katarak terjadi ketika protein dalam lensa mata menggumpal dan membuat lensa menjadi keruh. Beberapa faktor risiko untuk katarak meliputi:</p>
-    <ul>
-        <li>Penuaan</li>
-        <li>Paparan sinar matahari berlebihan</li>
-        <li>Riwayat keluarga</li>
-        <li>Konsumsi alkohol dan merokok</li>
-        <li>Penggunaan steroid jangka panjang</li>
-        <li>Penyakit seperti diabetes</li>
-    </ul>
+    
+        <p>◉ Penuaan</p>
+        <p>◉ Paparan sinar matahari berlebihan</p>
+        <p>◉ Riwayat keluarga</p>
+        <p>◉ Konsumsi alkohol dan merokok</p>
+        <p>◉ Penggunaan steroid jangka panjang</p>
+        <p>◉ Penyakit seperti diabetes</P>
+   
 
-    <h2>Gejala Katarak</h2>
+    <h1>Gejala Katarak</h1>
     <p>Gejala katarak bisa bervariasi, tetapi beberapa gejala umum termasuk:</p>
-    <ul>
-        <li>Penglihatan kabur atau buram</li>
-        <li>Penglihatan ganda</li>
-        <li>Penglihatan warna yang pudar</li>
-        <li>Kesulitan melihat di malam hari</li>
-        <li>Penglihatan yang terganggu oleh cahaya terang</li>
-    </ul>
+   
+        <p>◉Penglihatan kabur atau buram</p>
+        <p>◉Penglihatan ganda</p>
+        <p>◉Penglihatan warna yang pudar</p>
+        <p>◉Kesulitan melihat di malam hari</p>
+        <p>◉Penglihatan yang terganggu oleh cahaya terang</p>
+    
 
-    <h2>Penanganan Katarak</h2>
+    <h1>Penanganan Katarak</h1>
     <p>Penanganan katarak melibatkan pembedahan untuk mengganti lensa yang keruh dengan lensa buatan yang jernih. Prosedur ini disebut sebagai operasi katarak atau facoemulsifikasi. Langkah-langkah penanganan katarak meliputi:</p>
-    <ol>
-        <li>Evaluasi Mata: Dokter mata akan mengevaluasi kondisi mata dan memeriksa kesehatan umum sebelum memutuskan apakah pembedahan diperlukan.</li>
-        <li>Pembedahan: Selama operasi katarak, lensa yang keruh dihilangkan dan diganti dengan lensa buatan yang disebut implank intraokular.</li>
-        <li>Rehabilitasi Pascaoperasi: Setelah operasi, pasien mungkin perlu menggunakan tetes mata dan mengikuti instruksi dokter mata untuk pemulihan yang cepat.</li>
-    </ol>
+    
+        <p>◉Evaluasi Mata: Dokter mata akan mengevaluasi kondisi mata dan memeriksa kesehatan umum sebelum memutuskan apakah pembedahan diperlukan.</p>
+        <p>◉Pembedahan: Selama operasi katarak, lensa yang keruh dihilangkan dan diganti dengan lensa buatan yang disebut implank intraokular.</p>
+        <p>◉Rehabilitasi Pascaoperasi: Setelah operasi, pasien mungkin perlu menggunakan tetes mata dan mengikuti instruksi dokter mata untuk pemulihan yang cepat.</p>
 
-    <h2>Pencegahan</h2>
+
+    <h1>Pencegahan</h1>
     <p>Beberapa langkah yang dapat membantu mencegah atau menunda perkembangan katarak meliputi:</p>
-    <ul>
-        <li>Memakai kacamata hitam untuk melindungi mata dari sinar UV</li>
-        <li>Menghindari merokok</li>
-        <li>Mengontrol diabetes dan kondisi kesehatan lainnya</li>
-        <li>Mengonsumsi makanan sehat yang kaya antioksidan seperti buah dan sayuran</li>
-        <li>Menjaga berat badan sehat</li>
-    </ul>'''),
+   
+        <p>◉Memakai kacamata hitam untuk melindungi mata dari sinar UV</p>
+        <p>◉Menghindari merokok</p>
+        <p>◉Mengontrol diabetes dan kondisi kesehatan lainnya</p>
+        <p>◉Mengonsumsi makanan sehat yang kaya antioksidan seperti buah dan sayuran</p>
+        <p>◉Menjaga berat badan sehat</p>
+    '''),
     'retinopathy': Markup('''<h1>Diabetic Retinopathy</h1>
     <p>Diabetic retinopathy adalah komplikasi diabetes yang memengaruhi mata. Kondisi ini terjadi ketika tingginya kadar gula darah menyebabkan kerusakan pada pembuluh darah kecil di retina, yaitu jaringan sensitif cahaya yang terletak di bagian belakang mata. Diabetic retinopathy dapat menyebabkan pembengkakan, kebocoran, atau bahkan pertumbuhan pembuluh darah baru yang abnormal pada retina, yang pada akhirnya bisa menyebabkan kebutaan jika tidak diobati.</p>
 
-    <h2>Tahapan Diabetic Retinopathy</h2>
-    <ol>
-        <li>Retinopati Non-Proliferatif (Non-Proliferative Diabetic Retinopathy - NPDR)</li>
-        <li>Retinopati Proliferatif (Proliferative Diabetic Retinopathy - PDR)</li>
-    </ol>
+    <h1>Tahapan Diabetic Retinopathy</h1>
+    
+        <p>◉Retinopati Non-Proliferatif (Non-Proliferative Diabetic Retinopathy - NPDR)</p>
+        <p>◉Retinopati Proliferatif (Proliferative Diabetic Retinopathy - PDR)</p>
 
-    <h2>Penanganan Diabetic Retinopathy</h2>
+
+    <h1>Penanganan Diabetic Retinopathy</h1>
     <p>Penanganan diabetic retinopathy bertujuan untuk memperlambat atau menghentikan perkembangan penyakit dan mencegah kebutaan. Berikut adalah beberapa metode penanganannya:</p>
-    <ol>
-        <li>Pengendalian Gula Darah</li>
-        <li>Terapi Laser (Fotokoagulasi)</li>
-        <li>Suntikan Obat Anti-VEGF</li>
-        <li>Vitrektomi</li>
-        <li>Pengendalian Faktor Risiko</li>
-    </ol>
+    
+        <p>◉Pengendalian Gula Darah</p>
+        <p>◉Terapi Laser (Fotokoagulasi)</p>
+        <p>◉Suntikan Obat Anti-VEGF</p>
+        <p>◉Vitrektomi</p>
+        <p>◉Pengendalian Faktor Risiko</p>
 
-    <h2>Pencegahan</h2>
+
+    <h1>Pencegahan</h1>
     <p>Pencegahan diabetic retinopathy melibatkan kontrol diabetes yang baik, termasuk:</p>
-    <ul>
-        <li>Pemantauan rutin kadar gula darah</li>
-        <li>Pemeriksaan mata secara berkala</li>
-        <li>Diet sehat dan olahraga teratur</li>
-        <li>Menghindari merokok</li>
-    </ul>'''),
+   
+        <p>◉Pemantauan rutin kadar gula darah</p>
+        <p>◉Pemeriksaan mata secara berkala</p>
+        <p>◉Diet sehat dan olahraga teratur</p>
+        <p>◉Menghindari merokok</p>
+    '''),
     'glaucoma': Markup(''' <h1>Glaukoma</h1>
     <p>Glaukoma adalah sekelompok penyakit mata yang merusak saraf optik mata, yang vital untuk penglihatan yang baik. Kerusakan ini sering disebabkan oleh tekanan yang sangat tinggi di mata (tekanan intraokular). Glaukoma adalah salah satu penyebab utama kebutaan bagi orang di atas 60 tahun. Ini bisa terjadi pada usia berapa pun tetapi lebih sering terjadi pada orang dewasa yang lebih tua.</p>
 
-    <h2>Jenis-jenis Glaukoma</h2>
-    <ol>
-        <li><strong>Glaukoma Sudut Terbuka (Open-Angle Glaucoma)</strong>: Ini adalah bentuk glaukoma yang paling umum.</li>
-        <li><strong>Glaukoma Sudut Tertutup (Angle-Closure Glaucoma)</strong>: Ini adalah kondisi yang kurang umum tetapi lebih parah.</li>
-        <li><strong>Glaukoma Tekanan Normal (Normal-Tension Glaucoma)</strong>: Dalam jenis ini, saraf optik rusak meskipun tekanan mata dalam kisaran normal.</li>
-        <li><strong>Glaukoma Kongenital</strong>: Jenis ini terjadi pada bayi yang lahir dengan cacat pada sudut drainase mata yang memperlambat atau mencegah drainase normal cairan mata.</li>
-        <li><strong>Glaukoma Sekunder</strong>: Jenis ini terjadi akibat kondisi atau penyakit lain.</li>
-    </ol>
+    <h1>Jenis-jenis Glaukoma</h1>
+    
+        <p>◉Glaukoma Sudut Terbuka (Open-Angle Glaucoma)</strong>: Ini adalah bentuk glaukoma yang paling umum.</p>
+        <p>◉Glaukoma Sudut Tertutup (Angle-Closure Glaucoma)</strong>: Ini adalah kondisi yang kurang umum tetapi lebih parah.</p>
+        <p>◉Glaukoma Tekanan Normal (Normal-Tension Glaucoma)</strong>: Dalam jenis ini, saraf optik rusak meskipun tekanan mata dalam kisaran normal.</p>
+        <p>◉Glaukoma Kongenital</strong>: Jenis ini terjadi pada bayi yang lahir dengan cacat pada sudut drainase mata yang memperlambat atau mencegah drainase normal cairan mata.</p>
+        <p>◉Glaukoma Sekunder</strong>: Jenis ini terjadi akibat kondisi atau penyakit lain.</p>
 
-    <h2>Gejala Glaukoma</h2>
+
+    <h1>Gejala Glaukoma</h1>
     <p>Gejala glaukoma bisa bervariasi tergantung pada jenisnya:</p>
-    <ul>
-        <li>Untuk Glaukoma Sudut Terbuka: Kehilangan penglihatan dimulai dari tepi penglihatan (peripheral vision).</li>
-        <li>Untuk Glaukoma Sudut Tertutup: Gejala bisa tiba-tiba dan parah.</li>
-    </ul>
+   
+        <p>◉Untuk Glaukoma Sudut Terbuka: Kehilangan penglihatan dimulai dari tepi penglihatan (peripheral vision).</p>
+        <p>◉Untuk Glaukoma Sudut Tertutup: Gejala bisa tiba-tiba dan parah.</p>
+    
 
-    <h2>Penanganan Glaukoma</h2>
+    <h1>Penanganan Glaukoma</h1>
     <p>Penanganan glaukoma berfokus pada menurunkan tekanan intraokular untuk mencegah kerusakan lebih lanjut pada saraf optik. Beberapa metode penanganan meliputi:</p>
-    <ol>
-        <li>Obat Tetes Mata</li>
-        <li>Obat Oral</li>
-        <li>Terapi Laser</li>
-        <li>Pembedahan</li>
-    </ol>
+    
+        <p>◉Obat Tetes Mata</p>
+        <p>◉Obat Oral</p>
+        <p>◉Terapi Laser</p>
+        <p>◉Pembedahan</p>
 
-    <h2>Pencegahan</h2>
+
+    <h1>Pencegahan</h1>
     <p>Sementara glaukoma tidak dapat selalu dicegah, beberapa langkah dapat membantu mengurangi risiko:</p>
-    <ul>
-        <li>Pemeriksaan Mata Rutin</li>
-        <li>Mengetahui Riwayat Keluarga</li>
-        <li>Olahraga Teratur</li>
-        <li>Mengambil Obat Mata Sesuai Rekomendasi</li>
-    </ul>'''),
+   
+        <p>◉Pemeriksaan Mata Rutin</p>
+        <p>◉Mengetahui Riwayat Keluarga</p>
+        <p>◉Olahraga Teratur</p>
+        <p>◉Mengambil Obat Mata Sesuai Rekomendasi</p>
+    '''),
     'normal': Markup(''' <h1>Mata Normal</h1>
     <p>Mata normal adalah mata yang tidak mengalami gangguan penglihatan atau penyakit mata yang serius. Ini adalah kondisi mata yang optimal, di mana semua struktur mata berfungsi dengan baik.</p>
 
-    <h2>Fungsi Mata Normal</h2>
+    <h1>Fungsi Mata Normal</h1>
     <p>Mata normal memiliki kemampuan untuk:</p>
-    <ul>
-        <li>Menerima cahaya dan gambar melalui kornea dan lensa.</li>
-        <li>Fokus gambar pada retina untuk membentuk gambar yang jelas.</li>
-        <li>Mengirimkan sinyal visual dari retina ke otak melalui saraf optik.</li>
-        <li>Mengatur jumlah cahaya yang masuk ke mata melalui iris.</li>
-        <li>Menyesuaikan bentuk lensa untuk melihat objek pada jarak yang berbeda (akomodasi).</li>
-    </ul>
+   
+        <p>◉Menerima cahaya dan gambar melalui kornea dan lensa.</p>
+        <p>◉Fokus gambar pada retina untuk membentuk gambar yang jelas.</p>
+        <p>◉Mengirimkan sinyal visual dari retina ke otak melalui saraf optik.</p>
+        <p>◉Mengatur jumlah cahaya yang masuk ke mata melalui iris.</p>
+        <p>◉Menyesuaikan bentuk lensa untuk melihat objek pada jarak yang berbeda (akomodasi).</p>
+    
 
-    <h2>Pencegahan</h2>
+    <h1>Pencegahan</h1>
     <p>Untuk menjaga kesehatan mata dan mencegah gangguan penglihatan, penting untuk:</p>
-    <ul>
-        <li>Memeriksakan mata secara teratur ke dokter mata untuk pemeriksaan rutin.</li>
-        <li>Memakai kacamata atau lensa kontak jika diperlukan.</li>
-        <li>Menghindari paparan langsung terhadap sinar UV dengan menggunakan kacamata hitam saat berada di bawah sinar matahari.</li>
-        <li>Mengonsumsi makanan sehat yang kaya nutrisi, terutama makanan yang mengandung vitamin A, lutein, dan zeaxanthin.</li>
-        <li>Menjaga kelembapan mata dengan menggunakan tetes mata buatan jika mata terasa kering.</li>
-        <li>Menghindari kebiasaan merokok.</li>
-        <li>Menjaga berat badan yang sehat dan mengelola kondisi kesehatan seperti diabetes dan tekanan darah tinggi.</li>
-    </ul>''')
+   
+        <p>◉Memeriksakan mata secara teratur ke dokter mata untuk pemeriksaan rutin.</p>
+        <p>◉Memakai kacamata atau lensa kontak jika diperlukan.</p>
+        <p>◉Menghindari paparan langsung terhadap sinar UV dengan menggunakan kacamata hitam saat berada di bawah sinar matahari.</p>
+        <p>◉Mengonsumsi makanan sehat yang kaya nutrisi, terutama makanan yang mengandung vitamin A, lutein, dan zeaxanthin.</p>
+        <p>◉Menjaga kelembapan mata dengan menggunakan tetes mata buatan jika mata terasa kering.</p>
+        <p>◉Menghindari kebiasaan merokok.</p>
+        <p>◉Menjaga berat badan yang sehat dan mengelola kondisi kesehatan seperti diabetes dan tekanan darah tinggi.</p>
+    ''')
 }
 
 @app.route('/', methods=['GET', 'POST'])
