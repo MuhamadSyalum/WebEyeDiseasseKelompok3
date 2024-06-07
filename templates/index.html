@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 </head>
-<body>
+<body background="logo.png">
 
 <header class="header">
     <a href="#" class="logo">
@@ -23,23 +23,74 @@
         <a href="{{ url_for('anggota') }}">Anggota</a>
         <a href="{{ url_for('beranda') }}">Beranda</a>
     </nav>
+    <div class="fas fa-bars" id="menu-btn"></div>
+</div>
 </header>
 
+</section>
+<section class="predik" id="predik">
+    <div class="container">
+    <h1 class="heading">
+    <span>P</span>
+    <span>E</span>
+    <span>N</span>
+    <span>Y</span>
+    <span>A</span>
+    <span>K</span>
+    <span>I</span>
+    <span>T</span>
+    <br>
+    <span>M</span>
+    <span>A</span>
+    <span>T</span>
+    <span>A</span>
+</h1>
+<h3>Upload Gambar Retina</h3>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="Upload">
+</form>
+
+{% if filename %}
+<h3>Uploaded Image:</h3>
+<img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" style="max-width: 20rem; max-height: 20rem;">
+
+<h3>Prediction: {{ prediction }}</h3>
+<p>{{ explanation }}</p>
+{% endif %}
+    </div>
+</section>
 <div class="container">
-    <h1>Upload an eye image</h1>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
-    </form>
-
-    {% if filename %}
-    <h2>Uploaded Image:</h2>
-    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" style="max-width: 20rem; max-height: 20rem;">
     
-    <h2>Prediction: {{ prediction }}</h2>
-    <p>{{ explanation }}</p>
-    {% endif %}
 </div>
+<section class="footer">
+    <div class="share" id="share">
+        <a href="https://m.facebook.com/muhammad.syalum"class="fab fa-facebook-f"></a>
+        <a href="https://mobile.twitter.com/MuhamadSyalum" class="fab fa-twitter"></a>
+        <a href="https://instagram.com/msyalum" class="fab fa-instagram"></a>
+        <a href="https://wa.me/6283819181429" class="fab fa-whatsapp"></a>
+        <a href="https://t.me/Syalum" class="fab fa-telegram"></a>
+    </div>
+    <div class="links">
+        <a href="{{ url_for('index') }}">Prediksi Gambar</a>
+        <a href="{{ url_for('hasil') }}">Hasil</a>
+        <a href="{{ url_for('anggota') }}">Anggota</a>
+        <a href="{{ url_for('beranda') }}">Beranda</a>
+    </div>
 
+    <div class="credit">created by <span>Kelompok 3</span></span> | all rights reserved</div>
+
+</section>
 </body>
+<script>
+let navbar = document.querySelector('.navbar');
+
+    document.querySelector('#menu-btn').onclick = () =>{
+        navbar.classList.toggle('active');
+    }
+    
+window.onscroll = () =>{
+    navbar.classList.remove('active');
+    
+}</script>
 </html>

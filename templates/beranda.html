@@ -12,19 +12,50 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 </head>
 <body>
-
-<header class="header">
-    <a href="#" class="logo">
-        <img src="logo.png" alt="">
-    </a>
-    <nav class="navbar">
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="logo.png" alt="">
+        </a>
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}">Prediksi Gambar</a>
+            <a href="{{ url_for('hasil') }}">Hasil</a>
+            <a href="{{ url_for('anggota') }}">Anggota</a>
+            <a href="{{ url_for('beranda') }}">Beranda</a>
+        </nav>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+    </header>
+    
+<h1>ini beranda</h1>
+<section class="footer">
+    <div class="share" id="share">
+        <a href="https://m.facebook.com/muhammad.syalum"class="fab fa-facebook-f"></a>
+        <a href="https://mobile.twitter.com/MuhamadSyalum" class="fab fa-twitter"></a>
+        <a href="https://instagram.com/msyalum" class="fab fa-instagram"></a>
+        <a href="https://wa.me/6283819181429" class="fab fa-whatsapp"></a>
+        <a href="https://t.me/Syalum" class="fab fa-telegram"></a>
+    </div>
+    <div class="links">
         <a href="{{ url_for('index') }}">Prediksi Gambar</a>
         <a href="{{ url_for('hasil') }}">Hasil</a>
         <a href="{{ url_for('anggota') }}">Anggota</a>
         <a href="{{ url_for('beranda') }}">Beranda</a>
-    </nav>
-</header>
-<h1>ini beranda</h1>
+    </div>
 
+    <div class="credit">created by <span>Kelompok3</span></span> | all rights reserved</div>
+
+</section>
 </body>
+<script>
+let navbar = document.querySelector('.navbar');
+
+    document.querySelector('#menu-btn').onclick = () =>{
+        navbar.classList.toggle('active');
+    }
+    
+window.onscroll = () =>{
+    navbar.classList.remove('active');
+    
+}</script>
 </html>
+
