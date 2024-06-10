@@ -14,7 +14,7 @@ UPLOAD_FOLDER = 'static/uploads/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Load the pre-trained Keras model
-model = load_model('mobile-netv2.h5')
+model = load_model('mobilenetV1_model_tensorflowNew.h5')
 
 # Define a function to load and preprocess the image
 def preprocess_image(img_path):
@@ -26,48 +26,7 @@ def preprocess_image(img_path):
 
 # Dictionary with explanations for each condition
 condition_explanations = {
-    'cataract': Markup('''   <h1>Katarak</h1>
-    <p>Katarak adalah kondisi di mana lensa mata menjadi keruh, menyebabkan penglihatan menjadi kabur atau buram. Ini adalah salah satu penyebab umum gangguan penglihatan pada orang dewasa.</p>
-
-    <h1>Penyebab Katarak</h1>
-    <p>Katarak terjadi ketika protein dalam lensa mata menggumpal dan membuat lensa menjadi keruh. Beberapa faktor risiko untuk katarak meliputi:</p>
-    
-        <p>◉ Penuaan</p>
-        <p>◉ Paparan sinar matahari berlebihan</p>
-        <p>◉ Riwayat keluarga</p>
-        <p>◉ Konsumsi alkohol dan merokok</p>
-        <p>◉ Penggunaan steroid jangka panjang</p>
-        <p>◉ Penyakit seperti diabetes</P>
-   
-
-    <h1>Gejala Katarak</h1>
-    <p>Gejala katarak bisa bervariasi, tetapi beberapa gejala umum termasuk:</p>
-   
-        <p>◉Penglihatan kabur atau buram</p>
-        <p>◉Penglihatan ganda</p>
-        <p>◉Penglihatan warna yang pudar</p>
-        <p>◉Kesulitan melihat di malam hari</p>
-        <p>◉Penglihatan yang terganggu oleh cahaya terang</p>
-    
-
-    <h1>Penanganan Katarak</h1>
-    <p>Penanganan katarak melibatkan pembedahan untuk mengganti lensa yang keruh dengan lensa buatan yang jernih. Prosedur ini disebut sebagai operasi katarak atau facoemulsifikasi. Langkah-langkah penanganan katarak meliputi:</p>
-    
-        <p>◉Evaluasi Mata: Dokter mata akan mengevaluasi kondisi mata dan memeriksa kesehatan umum sebelum memutuskan apakah pembedahan diperlukan.</p>
-        <p>◉Pembedahan: Selama operasi katarak, lensa yang keruh dihilangkan dan diganti dengan lensa buatan yang disebut implank intraokular.</p>
-        <p>◉Rehabilitasi Pascaoperasi: Setelah operasi, pasien mungkin perlu menggunakan tetes mata dan mengikuti instruksi dokter mata untuk pemulihan yang cepat.</p>
-
-
-    <h1>Pencegahan</h1>
-    <p>Beberapa langkah yang dapat membantu mencegah atau menunda perkembangan katarak meliputi:</p>
-   
-        <p>◉Memakai kacamata hitam untuk melindungi mata dari sinar UV</p>
-        <p>◉Menghindari merokok</p>
-        <p>◉Mengontrol diabetes dan kondisi kesehatan lainnya</p>
-        <p>◉Mengonsumsi makanan sehat yang kaya antioksidan seperti buah dan sayuran</p>
-        <p>◉Menjaga berat badan sehat</p>
-    '''),
-    'retinopathy': Markup('''<h1>Diabetic Retinopathy</h1>
+    'DR': Markup('''<h1>Diabetic Retinopathy</h1>
     <p>Diabetic retinopathy adalah komplikasi diabetes yang memengaruhi mata. Kondisi ini terjadi ketika tingginya kadar gula darah menyebabkan kerusakan pada pembuluh darah kecil di retina, yaitu jaringan sensitif cahaya yang terletak di bagian belakang mata. Diabetic retinopathy dapat menyebabkan pembengkakan, kebocoran, atau bahkan pertumbuhan pembuluh darah baru yang abnormal pada retina, yang pada akhirnya bisa menyebabkan kebutaan jika tidak diobati.</p>
 
     <h1>Tahapan Diabetic Retinopathy</h1>
@@ -178,7 +137,7 @@ def index():
             
             # Decode the prediction
             predicted_class = np.argmax(prediction, axis=1)[0]
-            class_labels = ['cataract', 'retinopathy', 'glaucoma', 'normal']
+            class_labels = [ 'DR', 'glaucoma', 'normal']
             predicted_label = class_labels[predicted_class]
             
             # Get the explanation for the predicted condition
