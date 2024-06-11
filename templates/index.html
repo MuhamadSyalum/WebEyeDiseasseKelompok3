@@ -11,21 +11,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
     <style>
-        
-body{
-    background: url('{{ url_for('static', filename='images/logo.png') }}') no-repeat center center fixed;
-    background-size: cover;
-}
-
+        body {
+            background: url('{{ url_for('static', filename='images/logo.png') }}') no-repeat center center fixed;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
 
 <header class="header">
-    <a href="{{ url_for('static', filename='images/stechoq-logo.png') }}" class="logo">
+    <a href="{{ url_for('index') }}" class="logo">
         <img src="{{ url_for('static', filename='images/stechoq-logo.png') }}" alt="logo">
     </a>
-    
     
     <nav class="navbar">
         <a href="{{ url_for('index') }}">Prediksi Gambar</a>
@@ -34,71 +31,71 @@ body{
         <a href="{{ url_for('beranda') }}">Beranda</a>
     </nav>
     <div class="fas fa-bars" id="menu-btn"></div>
-</div>
 </header>
 
-</section>
 <section class="predik" id="predik">
     <div class="container">
-    <h1 class="heading">
-        <br>
-        <br>
-        <br>
-    <span>P</span>
-    <span>E</span>
-    <span>N</span>
-    <span>Y</span>
-    <span>A</span>
-    <span>K</span>
-    <span>I</span>
-    <span>T</span>
-    <br>
-    <span>M</span>
-    <span>A</span>
-    <span>T</span>
-    <span>A</span>
-</h1>
-<h3>Upload Gambar Retina</h3>
-<form method="post" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <input type="submit" value="Upload">
-</form>
+        <h1 class="heading">
+            <br><br><br>
+            <span>P</span>
+            <span>E</span>
+            <span>N</span>
+            <span>Y</span>
+            <span>A</span>
+            <span>K</span>
+            <span>I</span>
+            <span>T</span>
+            <br>
+            <span>M</span>
+            <span>A</span>
+            <span>T</span>
+            <span>A</span>
+        </h1>
+        <h3>Upload Gambar Retina</h3>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <label for="model_choice">Choose a model:</label>
+            <select name="model_choice" id="model_choice">
+                <option value="model_1">MobileNetv2</option>
+                <option value="model_2">MobileNetv1</option>
+                <option value="model_3">Model 3</option>
+            </select>
+            <input type="submit" value="Upload">
+        </form>
 
-{% if filename %}
-<h3>Uploaded Image:</h3>
-<img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" style="max-width: 20rem; max-height: 20rem;">
-
-<h3>Prediction: {{ prediction }}</h3>
-<p>{{ explanation }}</p>
-{% endif %}
-</div>
+        {% if filename %}
+        <h3>Uploaded Image:</h3>
+        <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" style="max-width: 20rem; max-height: 20rem;">
+        
+        <h3>Prediction: {{ prediction }}</h3>
+        <p>{{ explanation }}</p>
+        {% endif %}
+    </div>
 </section>
-<div class="container">
-    
-</div>
+
 <section class="footer">
-    <div class="credit">created by <span>Kelompok 3</span></br>
-    Muhamad Syalum</br>
-Anton Wijaya</br>
-Fatih Maulana Muhammad</br>
-Bagus Haris Suhartono</br>
-Ana Mariam</br>
-Cut Salsabila Amani</br>
-Natal Diau Situmorang</br>
-</div>
-
+    <div class="credit">
+        created by <span>Kelompok 3</span><br>
+        Muhamad Syalum<br>
+        Anton Wijaya<br>
+        Fatih Maulana Muhammad<br>
+        Bagus Haris Suhartono<br>
+        Ana Mariam<br>
+        Cut Salsabila Amani<br>
+        Natal Diau Situmorang<br>
+    </div>
 </section>
+
 <script>
     let navbar = document.querySelector('.navbar');
     
-        document.querySelector('#menu-btn').onclick = () =>{
-            navbar.classList.toggle('active');
-        }
-        
-    window.onscroll = () =>{
+    document.querySelector('#menu-btn').onclick = () => {
+        navbar.classList.toggle('active');
+    }
+    
+    window.onscroll = () => {
         navbar.classList.remove('active');
-        
-    }</script>
+    }
+</script>
 </body>
-
 </html>

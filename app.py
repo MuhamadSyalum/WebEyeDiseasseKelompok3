@@ -19,8 +19,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/eye_dis
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Load the pre-trained Keras model
-model = load_model('mobile-netv2.h5')
+# Load the pre-trained Keras models
+model_1 = load_model('mobile-netv2.h5')
+model_2 = load_model('mobilenetV1_model_tensorflowNew.h5')
+model_3 = load_model('mobilenetv2.h5')
 
 # Define a function to load and preprocess the image
 def preprocess_image(img_path):
@@ -162,7 +164,6 @@ condition_explanations = {
     ''')
 }
 
-# Define the Predictions model
 class Prediction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(255), nullable=False)
@@ -179,6 +180,9 @@ def index():
         file = request.files['file']
         if file.filename == '':
             return redirect(request.url)
+
+        # Determine which model to use
+        model_choice = request.form.get('model_choice')
         
         if file:
             filename = secure_filename(file.filename)
@@ -186,10 +190,18 @@ def index():
             file.save(file_path)
             
             img_array = preprocess_image(file_path)
-            prediction = model.predict(img_array)
+            
+            if model_choice == 'model_2':
+                prediction = model_2.predict(img_array)
+                class_labels = ['retinopathy', 'glaucoma', 'normal']
+            elif model_choice == 'model_3':
+                prediction = model_3.predict(img_array)
+                class_labels = ['retinopathy', 'glaucoma', 'normal']
+            else:
+                prediction = model_1.predict(img_array)
+                class_labels = ['cataract', 'retinopathy', 'glaucoma', 'normal']
             
             predicted_class = np.argmax(prediction, axis=1)[0]
-            class_labels = ['cataract', 'retinopathy', 'glaucoma', 'normal']
             predicted_label = class_labels[predicted_class]
             
             explanation = condition_explanations[predicted_label]
@@ -207,14 +219,12 @@ def index():
 def uploaded_file(filename):
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
-
 @app.route('/delete/<int:result_id>', methods=['POST'])
 def delete_result(result_id):
     result = Prediction.query.get_or_404(result_id)
     db.session.delete(result)
     db.session.commit()
     return redirect(url_for('hasil'))
-
 
 # Route to display results
 @app.route('/hasil')
