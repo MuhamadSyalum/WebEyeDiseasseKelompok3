@@ -10,11 +10,113 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <style>
+        body {
+    position: relative; /* Tetapkan posisi relative pada body */
+}
+
+body::before {
+    content: '';
+    background: url('{{ url_for('static', filename='images/logo.png') }}') no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5; /* Opasitas 50% */
+    z-index: -1; /* Letakkan di belakang konten */
+}
+        .container {
+            opacity: 1;
+            display: flex;
+            flex-direction: column; /* Set to column for vertical alignment */
+            align-items: center; /* Center align items */
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: 100px;
+        }
+        table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: rgba(247, 0, 0, 0.7); 
+    border: 1px solid black; /* Black border */
+}
+
+td {
+    background-color: rgba(95, 0, 247, 0.7); 
+    border: 1px solid black; /* Black border */
+}
+
+/* Add numbering to the first column */
+tbody tr td:first-child:before {
+    display: inline-block;
+    width: 2em; /* Adjust width as needed */
+    margin-right: 1em; /* Adjust margin as needed */
+}
+h1{
+    font-size: 20px;
+}
+.btn{
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #b2f703, #260de2, #f80606);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #000;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+.btn:hover{
+	background-position: right;
+}
+
+        @media screen and (max-width: 600px) {
+            table, th, td {
+                display: block;
+                width: 100%;
+            }
+            th, td {
+                padding: 10px;
+                text-align: right;
+            }
+            th::after {
+                content: ":";
+            }
+            td {
+                text-align: left;
+                padding-left: 50%;
+                position: relative;
+            }
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
-        <a href="#" class="logo">
-            <img src="logo.png" alt="">
+        <a href="{{ url_for('index') }}" class="logo">
+            <img src="{{ url_for('static', filename='images/stechoq-logo.png') }}" alt="logo">
         </a>
         <nav class="navbar">
             <a href="{{ url_for('index') }}">Prediksi Gambar</a>
@@ -23,41 +125,66 @@
             <a href="{{ url_for('beranda') }}">Beranda</a>
         </nav>
         <div class="fas fa-bars" id="menu-btn"></div>
-    </div>
     </header>
     
-<div class="container">
-    <h1>ini hasil</h1>
+    <div class="container">
+        <h1 class="heading">
+        <span>h</span>
+        <span>a</span>
+        <span>s</span>
+        <span>i</span>
+        <span>l</span>
+        <br>
+        <span>p</span>
+        <span>r</span>
+        <span>e</span>
+        <span>d</span>
+        <span>i</span>
+        <span>k</span>
+        <span>s</span>
+        <span>i</span>
+    </h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Gambar</th>
+                    <th>Hasil Prediksi</th>
+                    <th>Tanggal Upload</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td data-label="Image"><img src="{{ url_for('uploaded_file', filename=result.filename) }}" style="max-width: 100px; max-height: 100px;"></td>
+                    <td data-label="Prediction"><h1>{{ result.prediction }}</h1></td>
+                    <td data-label="Upload Date"><h1>{{ result.upload_date.strftime('%Y-%m-%d %H:%M:%S') }}</h1></td>
+                   
+                    <td data-label="Action">
+                        <form action="{{ url_for('delete_result', result_id=result.id) }}" method="post">
+                            <button type="submit" class="btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     
-</div>
-<section class="footer">
-    <div class="share" id="share">
-        <a href="https://m.facebook.com/muhammad.syalum"class="fab fa-facebook-f"></a>
-        <a href="https://mobile.twitter.com/MuhamadSyalum" class="fab fa-twitter"></a>
-        <a href="https://instagram.com/msyalum" class="fab fa-instagram"></a>
-        <a href="https://wa.me/6283819181429" class="fab fa-whatsapp"></a>
-        <a href="https://t.me/Syalum" class="fab fa-telegram"></a>
-    </div>
-    <div class="links">
-        <a href="{{ url_for('index') }}">Prediksi Gambar</a>
-        <a href="{{ url_for('hasil') }}">Hasil</a>
-        <a href="{{ url_for('anggota') }}">Anggota</a>
-        <a href="{{ url_for('beranda') }}">Beranda</a>
-    </div>
-
-    <div class="credit">created by <span>Kelompok 3</span></span> | all rights reserved</div>
-
-</section>
+    <section class="footer">
+        <div class="credit">created by <span>Kelompok 3</span></br>
+        Muhamad Syalum</br>
+        Anton Wijaya</br>
+        Fatih Maulana Muhammad</br>
+        Bagus Haris Suhartono</br>
+        Ana Mariam</br>
+        Cut Salsabila Amani</br>
+        Natal Diau Situmorang</br>
+        </div>
+    </section>
 </body>
 <script>
-let navbar = document.querySelector('.navbar');
-
-    document.querySelector('#menu-btn').onclick = () =>{
+    let navbar = document.querySelector('.navbar');
+    document.querySelector('#menu-btn').onclick = () => {
         navbar.classList.toggle('active');
     }
-    
-window.onscroll = () =>{
-    navbar.classList.remove('active');
-    
-}</script>
-</html>

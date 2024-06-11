@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,11 +10,95 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <style>
+   body {
+    position: relative; /* Tetapkan posisi relative pada body */
+}
+
+body::before {
+    content: '';
+    background: url('{{ url_for('static', filename='images/logo.png') }}') no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5; /* Opasitas 50% */
+    z-index: -1; /* Letakkan di belakang konten */
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  opacity: 1;
+}
+
+.left {
+  flex: 1;
+  text-align: center;
+}
+
+.right {
+  flex: 1;
+  padding: 20px;
+}
+
+/* CSS untuk gambar */
+.foto {
+  width: 400px; 
+  height: auto; 
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animasi masuk */
+.gambar-animasi, .deskripsi-animasi {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Tambahkan kelas untuk animasi aktif */
+.gambar-animasi-active, .deskripsi-animasi-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animasi keluar */
+.gambar-animasi-exit, .deskripsi-animasi-exit {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.right h1, .left h1 {
+  margin-top: 0;
+}
+
+.right p, .left p {
+  font-size: 18px;
+  overflow: hidden; /* agar teks tidak langsung muncul */
+  white-space: nowrap; /* agar teks tidak pindah baris */
+  margin: 0 auto;
+  border-right: 2px solid orange; /* efek mengetik */
+  animation: typing 3s steps(40) forwards; /* animasi mengetik */
+}
+
+/* Keyframes untuk animasi mengetik */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+    </style>
 </head>
 <body>
     <header class="header">
-        <a href="#" class="logo">
-            <img src="logo.png" alt="">
+        <a href="{{ url_for('static', filename='images/stechoq-logo.png') }}" class="logo">
+            <img src="{{ url_for('static', filename='images/stechoq-logo.png') }}" alt="logo">
         </a>
         <nav class="navbar">
             <a href="{{ url_for('index') }}">Prediksi Gambar</a>
@@ -23,39 +107,116 @@
             <a href="{{ url_for('beranda') }}">Beranda</a>
         </nav>
         <div class="fas fa-bars" id="menu-btn"></div>
-    </div>
     </header>
+
+    <div class="container">
+        <div class="left">
+            <img src="{{ url_for('static', filename='images/katarak.png') }}" alt="Foto" id="foto1" class="foto gambar-animasi">
+        </div>
+        <div class="right">
+             <h1>Mata Katarak</h1>
+             <p class="deskripsi-animasi">Katarak adalah penyakit mata yang menyebabkan lensa mata menjadi keruh.<br>
+                 Hal ini dapat membuat penglihatan kabur, seperti melihat melalui kaca yang berkabut.<br>
+                  Katarak paling sering terjadi pada orang tua, tetapi juga dapat terjadi<br>
+                   pada orang yang lebih muda karena cedera mata, penyakit tertentu,atau obat-obatan tertentu.<br>
+                    Pengobatan katarak umumnya dilakukan dengan operasi penggantian lensa mata.</p>
+        </div>
+    </div>
     
-<h1>ini beranda</h1>
-<section class="footer">
-    <div class="share" id="share">
-        <a href="https://m.facebook.com/muhammad.syalum"class="fab fa-facebook-f"></a>
-        <a href="https://mobile.twitter.com/MuhamadSyalum" class="fab fa-twitter"></a>
-        <a href="https://instagram.com/msyalum" class="fab fa-instagram"></a>
-        <a href="https://wa.me/6283819181429" class="fab fa-whatsapp"></a>
-        <a href="https://t.me/Syalum" class="fab fa-telegram"></a>
-    </div>
-    <div class="links">
-        <a href="{{ url_for('index') }}">Prediksi Gambar</a>
-        <a href="{{ url_for('hasil') }}">Hasil</a>
-        <a href="{{ url_for('anggota') }}">Anggota</a>
-        <a href="{{ url_for('beranda') }}">Beranda</a>
+    <div class="container">
+        <div class="left">
+            <h1>Mata Glaukoma</h1>
+            <p class="deskripsi-animasi">Glaukoma adalah penyakit mata yang merusak saraf optik, yang menghubungkan mata ke otak.<br>
+                Kerusakan ini dapat menyebabkan hilangnya penglihatan, terutama di bagian tepi penglihatan.<br>
+                 Glaukoma biasanya tidak menunjukkan gejala pada tahap awal, <br>
+                 sehingga penting untuk melakukan pemeriksaan mata secara rutin,<br>
+                  terutama bagi orang yang berisiko tinggi terkena penyakit ini, <br>
+                  seperti orang tua, orang dengan riwayat keluarga glaukoma, dan orang dengan tekanan mata tinggi. <br>
+                  Pengobatan glaukoma biasanya dilakukan dengan obat-obatan, operasi laser, atau operasi tradisional.</p>  
+        </div>
+        <div class="right">
+            <img src="{{ url_for('static', filename='images/glaucoma.png') }}" alt="Foto" id="foto2" class="foto gambar-animasi">
+        </div>
     </div>
 
-    <div class="credit">created by <span>Kelompok3</span></span> | all rights reserved</div>
+    <div class="container">
+        <div class="left">
+            <img src="{{ url_for('static', filename='images/retinopathy.jpeg') }}" alt="Foto" id="foto3" class="foto gambar-animasi">
+        </div>
+        <div class="right">
+            <h1>Mata Diabetic Retinopathy</h1>
+            <p class="deskripsi-animasi">Diabetic retinopathy adalah komplikasi diabetes yang merusak pembuluh darah di retina,
+                <br> bagian belakang mata yang bertanggung jawab untuk penglihatan. 
+                <br>Kerusakan ini dapat menyebabkan berbagai masalah penglihatan, 
+                <br>termasuk penglihatan kabur, bintik buta, dan hilangnya penglihatan secara total.<br>
+                 Diabetic retinopathy adalah salah satu penyebab utama kebutaan pada orang dewasa.<br>
+                  Pengobatan diabetic retinopathy biasanya dilakukan dengan laser,<br> operasi vitrektomi, atau injeksi obat ke dalam mata.</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="left">
+            <h1>Mata Normal</h1>
+            <p class="deskripsi-animasi">Penglihatan normal adalah kemampuan untuk melihat dengan jelas dan tajam.<br>
+                 Penglihatan normal memungkinkan individu untuk melihat detail dengan baik,<br> 
+                 termasuk benda kecil, tulisan, dan warna. Penglihatan normal penting untuk melakukan<br> 
+                 berbagai aktivitas sehari-hari, seperti membaca, mengemudi, dan bekerja.</p>  
+        </div>
+        <div class="right">
+            <img src="{{ url_for('static', filename='images/normal.jpg') }}" alt="Foto" id="foto4" class="foto gambar-animasi">
+        </div>
+    </div>
 
-</section>
+    <section class="footer">
+        <div class="credit">created by <span>Kelompok 3</span></br>
+        Muhamad Syalum</br>
+        Anton Wijaya</br>
+        Fatih Maulana Muhammad</br>
+        Bagus Haris Suhartono</br>
+        Ana Mariam</br>
+        Cut Salsabila Amani</br>
+        Natal Diau Situmorang</br>
+        </div>
+    </section>
 </body>
 <script>
 let navbar = document.querySelector('.navbar');
 
-    document.querySelector('#menu-btn').onclick = () =>{
-        navbar.classList.toggle('active');
-    }
-    
-window.onscroll = () =>{
+document.querySelector('#menu-btn').onclick = () =>{
+    navbar.classList.toggle('active');
+}
+
+window.addEventListener('scroll', function() {
     navbar.classList.remove('active');
     
-}</script>
-</html>
+    // Mengecek apakah elemen dalam tampilan
+    var fotos = document.querySelectorAll('.foto');
+    var deskripsi = document.querySelectorAll('.deskripsi-animasi');
+    var windowHeight = window.innerHeight;
+    
+    fotos.forEach(function(foto, index) {
+        var fotoPos = foto.getBoundingClientRect().top;
+        var deskripsiPos = deskripsi
+        var deskripsiPos = deskripsi[index].getBoundingClientRect().top;
 
+        // Jika elemen muncul dalam tampilan, terapkan animasi masuk
+        if (fotoPos < windowHeight) {
+            foto.classList.add('gambar-animasi-active');
+            deskripsi[index].classList.add('deskripsi-animasi-active');
+        } else {
+            foto.classList.remove('gambar-animasi-active');
+            deskripsi[index].classList.remove('deskripsi-animasi-active');
+        }
+
+        // Jika elemen tidak dalam tampilan, terapkan animasi keluar
+        if (fotoPos > windowHeight * 1.2 || fotoPos + foto.clientHeight < 0) {
+            foto.classList.add('gambar-animasi-exit');
+            deskripsi[index].classList.add('deskripsi-animasi-exit');
+        } else {
+            foto.classList.remove('gambar-animasi-exit');
+            deskripsi[index].classList.remove('deskripsi-animasi-exit');
+        }
+    });
+});
+</script>
+</html>

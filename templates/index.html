@@ -10,13 +10,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <style>
+        
+body{
+    background: url('{{ url_for('static', filename='images/logo.png') }}') no-repeat center center fixed;
+    background-size: cover;
+}
+
+    </style>
 </head>
-<body background="logo.png">
+<body>
 
 <header class="header">
-    <a href="#" class="logo">
-        <img src="logo.png" alt="">
+    <a href="{{ url_for('static', filename='images/stechoq-logo.png') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/stechoq-logo.png') }}" alt="logo">
     </a>
+    
+    
     <nav class="navbar">
         <a href="{{ url_for('index') }}">Prediksi Gambar</a>
         <a href="{{ url_for('hasil') }}">Hasil</a>
@@ -31,6 +41,9 @@
 <section class="predik" id="predik">
     <div class="container">
     <h1 class="heading">
+        <br>
+        <br>
+        <br>
     <span>P</span>
     <span>E</span>
     <span>N</span>
@@ -58,39 +71,34 @@
 <h3>Prediction: {{ prediction }}</h3>
 <p>{{ explanation }}</p>
 {% endif %}
-    </div>
+</div>
 </section>
 <div class="container">
     
 </div>
 <section class="footer">
-    <div class="share" id="share">
-        <a href="https://m.facebook.com/muhammad.syalum"class="fab fa-facebook-f"></a>
-        <a href="https://mobile.twitter.com/MuhamadSyalum" class="fab fa-twitter"></a>
-        <a href="https://instagram.com/msyalum" class="fab fa-instagram"></a>
-        <a href="https://wa.me/6283819181429" class="fab fa-whatsapp"></a>
-        <a href="https://t.me/Syalum" class="fab fa-telegram"></a>
-    </div>
-    <div class="links">
-        <a href="{{ url_for('index') }}">Prediksi Gambar</a>
-        <a href="{{ url_for('hasil') }}">Hasil</a>
-        <a href="{{ url_for('anggota') }}">Anggota</a>
-        <a href="{{ url_for('beranda') }}">Beranda</a>
-    </div>
-
-    <div class="credit">created by <span>Kelompok 3</span></span> | all rights reserved</div>
+    <div class="credit">created by <span>Kelompok 3</span></br>
+    Muhamad Syalum</br>
+Anton Wijaya</br>
+Fatih Maulana Muhammad</br>
+Bagus Haris Suhartono</br>
+Ana Mariam</br>
+Cut Salsabila Amani</br>
+Natal Diau Situmorang</br>
+</div>
 
 </section>
-</body>
 <script>
-let navbar = document.querySelector('.navbar');
+    let navbar = document.querySelector('.navbar');
+    
+        document.querySelector('#menu-btn').onclick = () =>{
+            navbar.classList.toggle('active');
+        }
+        
+    window.onscroll = () =>{
+        navbar.classList.remove('active');
+        
+    }</script>
+</body>
 
-    document.querySelector('#menu-btn').onclick = () =>{
-        navbar.classList.toggle('active');
-    }
-    
-window.onscroll = () =>{
-    navbar.classList.remove('active');
-    
-}</script>
 </html>

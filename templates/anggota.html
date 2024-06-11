@@ -9,11 +9,87 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <style>
+    body {
+    position: relative; /* Tetapkan posisi relative pada body */
+}
+
+body::before {
+    content: '';
+    background: url('{{ url_for('static', filename='images/logo.png') }}') no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5; /* Opasitas 50% */
+    z-index: -1; /* Letakkan di belakang konten */
+}
+        .container {
+            opacity: 1;
+            display: flex;
+            flex-direction: column; /* Set to column for vertical alignment */
+            align-items: center; /* Center align items */
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: 70px; /* Add margin-top to avoid being covered by header */
+            transition: margin-top 0.5s ease; /* Animasi saat margin-top berubah */
+        }
+        .member-box {
+            width: 80%; /* Set width to 80% of the container */
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px 0; /* Adjust margin to space boxes vertically */
+            box-sizing: border-box;
+            position: relative;
+            text-align: center; /* Center the text */
+            transition: background-color 0.5s ease; /* Animasi perubahan warna */
+        }
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            height: 500px; 
+            width: 100%; 
+        }
+        .member-image {
+            width: 100%;
+            height: 100%;
+            max-height: 100%; 
+            max-width: 100%; 
+            transition: opacity 0.5s ease; /* Animasi perubahan opacity */
+        }
+        .hidden {
+            display: none;
+        }
+        .description {
+            margin-top: 20px;
+            font-size: 18px; /* Increased font size */
+        }
+        .controls {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .prev-btn,
+        .next-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .prev-btn:hover,
+        .next-btn:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
 </head>
 <body>
     <header class="header">
-        <a href="#" class="logo">
-            <img src="logo.png" alt="">
+        <a href="{{ url_for('static', filename='images/stechoq-logo.png') }}" class="logo">
+            <img src="{{ url_for('static', filename='images/stechoq-logo.png') }}" alt="logo">
         </a>
         <nav class="navbar">
             <a href="{{ url_for('index') }}">Prediksi Gambar</a>
@@ -24,38 +100,234 @@
         <div class="fas fa-bars" id="menu-btn"></div>
     </div>
     </header>
-    
-<div class="container">
-   <h1>inin anggota</h1>
+    <div class="container">
+        <div class="member-box">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/syalum.jpg') }}" alt="Gambar 1" class="member-image">
+                <img src="{{ url_for('static', filename='images/akurasi-dan-validasi-akurasi.jpg') }}" alt="Gambar 2" class="member-image hidden">
+                <img src="{{ url_for('static', filename='images/loss-dan-validasiLossMobilenetv2.jpg') }}" alt="Gambar 3" class="member-image hidden">
+            </div>
+            <div class="description">
+                <p class="desc1">Muhamad Syalum<br>
+                Universitas Islam Nusantara
+                </p>
+                <p class="desc2 hidden">Hasil akurasi dan validasi akurasi Mobilenet v2<br>
+                    Plot tersebut menunjukkan akurasi model dan akurasi validasi selama 100 epoch pelatihan. Akurasi pelatihan (garis biru) meningkat stabil hingga mencapai sekitar 95%, sedangkan akurasi validasi (garis oranye) meningkat hingga sekitar epoch ke-20 lalu berfluktuasi antara 85% hingga 90%. Perbedaan signifikan antara akurasi pelatihan dan validasi setelah epoch ke-20 mengindikasikan potensi overfitting, di mana model bekerja sangat baik pada data pelatihan tetapi kurang menggeneralisasi dengan baik pada data baru.
+                </p>
+                <p class="desc3 hidden">Hasil loss pelatihan dan loss validasi mobilenet v2<br>
+                    Plot tersebut menunjukkan nilai loss model dan loss validasi selama 100 epoch pelatihan. Nilai loss pelatihan (garis biru) menurun secara konsisten, menunjukkan bahwa model semakin baik dalam meminimalkan kesalahan pada data pelatihan, mencapai sekitar 0.1 pada epoch ke-100. Sementara itu, nilai loss validasi (garis oranye) menurun pada awal pelatihan tetapi kemudian berfluktuasi antara 0.3 hingga 0.4 setelah sekitar epoch ke-20. Fluktuasi dan perbedaan yang signifikan antara nilai loss pelatihan dan validasi menunjukkan bahwa model mungkin mengalami overfitting, di mana model belajar terlalu baik pada data pelatihan namun kurang mampu menggeneralisasi pada data baru.</p>
+            </div>
+            <div class="controls">
+                <button class="prev-btn">&lt; Prev</button>
+                <button class="next-btn">Next &gt;</button>
+            </div>
+        </div>
+        <div class="member-box">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/anton.jpg') }}" alt="Gambar 1" class="member-image">
+                <img src="{{ url_for('static', filename='images/AkurasiMobilenet.jpg') }}" alt="Gambar 2" class="member-image hidden">
+                <img src="{{ url_for('static', filename='images/lossmodelmobilenet.jpg') }}" alt="Gambar 3" class="member-image hidden">
+            </div>
+            <div class="description">
+                <p class="desc1">Anton wijaya <br>
+                Universitas Tidar</p>
+                <p class="desc2 hidden">Hasil akurasi dan validasi akurasi mobilenet<br>
+                    grafik akurasi pelatihan dan validasi dari sebuah model selama beberapa epoch. Garis biru mewakili akurasi pelatihan yang terus meningkat dan mencapai hampir 100% dalam beberapa epoch pertama, menunjukkan bahwa model sangat baik dalam memprediksi data pelatihan. Garis merah mewakili akurasi validasi yang fluktuatif dan jauh lebih rendah dibandingkan akurasi pelatihan, menunjukkan kemungkinan adanya overfitting. Titik hijau menandai epoch terbaik, yaitu pada epoch ke-2, dimana akurasi validasi tertinggi tercapai.</p>
+                <p class="desc3 hidden">Hasil loss pelatihan dan validasi mobilenet<br>
+                    grafik loss pelatihan dan validasi dari model yang sama. Garis biru mewakili loss pelatihan yang terus menurun secara signifikan, menunjukkan bahwa model berhasil meminimalkan kesalahan pada data pelatihan. Garis merah mewakili loss validasi yang fluktuatif dan tetap tinggi setelah beberapa epoch, menandakan bahwa model tidak mampu meminimalkan kesalahan pada data validasi secara efektif. Epoch terbaik juga ditandai pada epoch ke-2 dengan titik hijau, di mana loss validasi terendah tercapai.</p>
+            </div>
+            <div class="controls">
+                <button class="prev-btn">&lt; Prev</button>
+                <button class="next-btn">Next &gt;</button>
+            </div>
+    </div>
+    <div class="member-box">
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/salsa.jpg') }}" alt="Gambar 1" class="member-image">
+            <img src="{{ url_for('static', filename='images/akurasiinceptionv3.jpg') }}" alt="Gambar 2" class="member-image hidden">
+            <img src="{{ url_for('static', filename='images/lossinceptionv3.jpg') }}" alt="Gambar 3" class="member-image hidden">
+        </div>
+        <div class="description">
+            <p class="desc1">Cut Salsabila Amani<br>
+            Universitas Dinamika</p>
+            <p class="desc2 hidden">Akurasi pelatihan dan validasi Inception v3<br>
+                Plot akurasi model menunjukkan bahwa model memiliki akurasi yang tinggi. Akurasi validasi mencapai 90% pada epoch 8, sedangkan akurasi latih mencapai 95% pada epoch yang sama. Hal ini menunjukkan bahwa model dapat memprediksi dengan benar label data dengan baik.</p>
+            <p class="desc3 hidden">Loss pelatihandan validasi Inception v3<br>
+                Plot loss menunjukkan bahwa model belajar dengan baik dan mengurangi kesalahan prediksi selama proses pelatihan. Loss validasi mencapai 0.3 pada epoch 8, sedangkan loss latih mencapai 0.1 pada epoch yang sama.
+<br>
+                Secara ringkas, loss model menunjukkan performa yang baik dan model belajar dengan baik.</p>
+        </div>
+        <div class="controls">
+            <button class="prev-btn">&lt; Prev</button>
+            <button class="next-btn">Next &gt;</button>
+        </div>
+</div>
+<div class="member-box">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='images/haris.jpg') }}" alt="Gambar 1" class="member-image">
+        <img src="{{ url_for('static', filename='images/akurasivgg16.jpg') }}" alt="Gambar 2" class="member-image hidden">
+        <img src="{{ url_for('static', filename='images/lossvgg16.jpg') }}" alt="Gambar 3" class="member-image hidden">
+    </div>
+    <div class="description">
+        <p class="desc1">Bagus Haris Suhartono<br>
+        POLIJE</p>
+        <p class="desc2 hidden">Akurasi latih dan validasi vgg 16<br>
+            grafik akurasi pelatihan dan validasi selama 25 epoch. Garis biru mewakili akurasi pelatihan yang meningkat secara konsisten hingga mendekati 95%, menunjukkan bahwa model berhasil memprediksi data pelatihan dengan sangat baik. Garis merah mewakili akurasi validasi yang lebih berfluktuasi, tetapi secara umum menunjukkan peningkatan hingga mencapai sekitar 80% pada epoch ke-21, yang ditandai dengan titik hijau sebagai epoch terbaik.</p>
+        <p class="desc3 hidden">Loss pelatihan dan validasi vgg 16<br>
+            grafik loss pelatihan dan validasi selama 25 epoch. Garis biru mewakili loss pelatihan yang menurun dengan cepat dan terus menurun seiring berjalannya epoch, mengindikasikan bahwa model semakin baik dalam meminimalkan kesalahan pada data pelatihan. Garis merah mewakili loss validasi yang sangat fluktuatif, dengan puncak dan lembah yang signifikan, tetapi umumnya menunjukkan penurunan sampai epoch ke-21, yang juga ditandai sebagai epoch terbaik. Namun, setelah epoch ke-21, loss validasi cenderung meningkat, menunjukkan adanya kemungkinan overfitting pada model.</p>
+    </div>
+    <div class="controls">
+        <button class="prev-btn">&lt; Prev</button>
+        <button class="next-btn">Next &gt;</button>
+    </div>
+</div>
+<div class="member-box">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='images/fatih.jpg') }}" alt="Gambar 1" class="member-image">
+        <img src="gambar2.jpg" alt="Gambar 2" class="member-image hidden">
+        <img src="gambar3.jpg" alt="Gambar 3" class="member-image hidden">
+    </div>
+    <div class="description">
+        <p class="desc1">Fatih Maulana Muhammad<br>Universitas Teknologi Yogyakarta</p>
+        <p class="desc2 hidden">Deskripsi anggota 2.</p>
+        <p class="desc3 hidden">Deskripsi anggota 3.</p>
+    </div>
+    <div class="controls">
+        <button class="prev-btn">&lt; Prev</button>
+        <button class="next-btn">Next &gt;</button>
+    </div>
+</div>
+<div class="member-box">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='images/ana.jpg') }}" alt="Gambar 1" class="member-image">
+        <img src="gambar2.jpg" alt="Gambar 2" class="member-image hidden">
+        <img src="gambar3.jpg" alt="Gambar 3" class="member-image hidden">
+    </div>
+    <div class="description">
+        <p class="desc1">Ana Mariam<br>Politeknik Enjinering Indorama</p>
+        <p class="desc2 hidden">Deskripsi anggota 2.</p>
+        <p class="desc3 hidden">Deskripsi anggota 3.</p>
+    </div>
+    <div class="controls">
+        <button class="prev-btn">&lt; Prev</button>
+        <button class="next-btn">Next &gt;</button>
+    </div>
+</div>
+<div class="member-box">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='images/natal.jpeg') }}" alt="Gambar 1" class="member-image">
+        <img src="gambar2.jpg" alt="Gambar 2" class="member-image hidden">
+        <img src="gambar3.jpg" alt="Gambar 3" class="member-image hidden">
+    </div>
+    <div class="description">
+        <p class="desc1">Natal Diau Situmorang<br>Politeknik Negeri Medan</p>
+        <p class="desc2 hidden">Deskripsi anggota 2.</p>
+        <p class="desc3 hidden">Deskripsi anggota 3.</p>
+    </div>
+    <div class="controls">
+        <button class="prev-btn">&lt; Prev</button>
+        <button class="next-btn">Next &gt;</button>
+    </div>
+</div>
 </div>
 <section class="footer">
-    <div class="share" id="share">
-        <a href="https://m.facebook.com/muhammad.syalum"class="fab fa-facebook-f"></a>
-        <a href="https://mobile.twitter.com/MuhamadSyalum" class="fab fa-twitter"></a>
-        <a href="https://instagram.com/msyalum" class="fab fa-instagram"></a>
-        <a href="https://wa.me/6283819181429" class="fab fa-whatsapp"></a>
-        <a href="https://t.me/Syalum" class="fab fa-telegram"></a>
-    </div>
-    <div class="links">
-        <a href="{{ url_for('index') }}">Prediksi Gambar</a>
-        <a href="{{ url_for('hasil') }}">Hasil</a>
-        <a href="{{ url_for('anggota') }}">Anggota</a>
-        <a href="{{ url_for('beranda') }}">Beranda</a>
-    </div>
-
-    <div class="credit">created by <span>Kelompok 3</span></span> | all rights reserved</div>
+    <div class="credit">created by <span>Kelompok 3</span></br>
+    Muhamad Syalum</br>
+Anton Wijaya</br>
+Fatih Maulana Muhammad</br>
+Bagus Haris Suhartono</br>
+Ana Mariam</br>
+Cut Salsabila Amani</br>
+Natal Diau Situmorang</br>
+</div>
 
 </section>
-</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 <script>
-let navbar = document.querySelector('.navbar');
+    let navbar = document.querySelector('.navbar');
 
     document.querySelector('#menu-btn').onclick = () =>{
         navbar.classList.toggle('active');
     }
-    
-window.onscroll = () =>{
-    navbar.classList.remove('active');
-    
-}</script>
+
+    window.onscroll = () =>{
+        navbar.classList.remove('active');
+    }
+
+    const memberBoxes = document.querySelectorAll('.member-box');
+
+    memberBoxes.forEach(box => {
+        const images = box.querySelectorAll('.member-image');
+        const descriptions = box.querySelectorAll('.description p');
+        const prevBtn = box.querySelector('.prev-btn');
+        const nextBtn = box.querySelector('.next-btn');
+        let currentImageIndex = 0;
+        let slideInterval;
+
+        function showImage(index) {
+            images.forEach((image, i) => {
+                if (i === index) {
+                    image.classList.remove('hidden');
+                    descriptions[i].classList.remove('hidden');
+                } else {
+                    image.classList.add('hidden');
+                    descriptions[i].classList.add('hidden');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentImageIndex = (currentImageIndex === images.length - 1) ? 0 : currentImageIndex + 1;
+            showImage(currentImageIndex);
+        }
+
+        function prevSlide() {
+            currentImageIndex = (currentImageIndex === 0) ? images.length - 1 : currentImageIndex - 1;
+            showImage(currentImageIndex);
+        }
+
+        function startSlide() {
+            slideInterval = setInterval(nextSlide, 3000); // Ganti gambar setiap 3 detik
+        }
+
+        function stopSlide() {
+            clearInterval(slideInterval);
+        }
+
+        showImage(currentImageIndex);
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopSlide(); // Hentikan interval saat tombol prev diklik
+        });
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopSlide(); // Hentikan interval saat tombol next diklik
+        });
+
+        // Mulai slide otomatis saat halaman dimuat
+        startSlide();
+
+        // Hentikan slide otomatis saat pengguna melakukan hover pada gambar
+        box.addEventListener('mouseenter', stopSlide);
+        // Lanjutkan slide otomatis saat pengguna meninggalkan gambar
+        box.addEventListener('mouseleave', startSlide);
+    });
+
+    // Animasi saat melakukan scroll
+    window.addEventListener('scroll', () => {
+        const memberBoxes = document.querySelectorAll('.member-box');
+        memberBoxes.forEach(box => {
+            const boxOffsetTop = box.offsetTop; // Top position of the box
+            const scrollY = window.scrollY || window.pageYOffset; // Current scroll position
+            if (scrollY > boxOffsetTop - 300) {
+                box.style.backgroundColor = '#ddd'; // Ganti warna box saat melewati batas tertentu
+            } else {
+                box.style.backgroundColor = '#f0f0f0'; // Kembalikan warna asli saat tidak scroll
+            }
+        });
+    });
+</script>
+</body>
 </html>
