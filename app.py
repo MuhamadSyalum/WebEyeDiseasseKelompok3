@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
+from flask_sqlalchemy import SQLAlchemy
 import os
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
@@ -13,8 +14,13 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# Configure the database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/eye_disease_prediction'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
 # Load the pre-trained Keras model
-model = load_model('mobilenetV1_model_tensorflowNew.h5')
+model = load_model('mobile-netv2.h5')
 
 # Define a function to load and preprocess the image
 def preprocess_image(img_path):
@@ -26,7 +32,48 @@ def preprocess_image(img_path):
 
 # Dictionary with explanations for each condition
 condition_explanations = {
-    'DR': Markup('''<h1>Diabetic Retinopathy</h1>
+    'cataract': Markup('''   <h1>Katarak</h1>
+    <p>Katarak adalah kondisi di mana lensa mata menjadi keruh, menyebabkan penglihatan menjadi kabur atau buram. Ini adalah salah satu penyebab umum gangguan penglihatan pada orang dewasa.</p>
+
+    <h1>Penyebab Katarak</h1>
+    <p>Katarak terjadi ketika protein dalam lensa mata menggumpal dan membuat lensa menjadi keruh. Beberapa faktor risiko untuk katarak meliputi:</p>
+    
+        <p>◉ Penuaan</p>
+        <p>◉ Paparan sinar matahari berlebihan</p>
+        <p>◉ Riwayat keluarga</p>
+        <p>◉ Konsumsi alkohol dan merokok</p>
+        <p>◉ Penggunaan steroid jangka panjang</p>
+        <p>◉ Penyakit seperti diabetes</P>
+   
+
+    <h1>Gejala Katarak</h1>
+    <p>Gejala katarak bisa bervariasi, tetapi beberapa gejala umum termasuk:</p>
+   
+        <p>◉Penglihatan kabur atau buram</p>
+        <p>◉Penglihatan ganda</p>
+        <p>◉Penglihatan warna yang pudar</p>
+        <p>◉Kesulitan melihat di malam hari</p>
+        <p>◉Penglihatan yang terganggu oleh cahaya terang</p>
+    
+
+    <h1>Penanganan Katarak</h1>
+    <p>Penanganan katarak melibatkan pembedahan untuk mengganti lensa yang keruh dengan lensa buatan yang jernih. Prosedur ini disebut sebagai operasi katarak atau facoemulsifikasi. Langkah-langkah penanganan katarak meliputi:</p>
+    
+        <p>◉Evaluasi Mata: Dokter mata akan mengevaluasi kondisi mata dan memeriksa kesehatan umum sebelum memutuskan apakah pembedahan diperlukan.</p>
+        <p>◉Pembedahan: Selama operasi katarak, lensa yang keruh dihilangkan dan diganti dengan lensa buatan yang disebut implank intraokular.</p>
+        <p>◉Rehabilitasi Pascaoperasi: Setelah operasi, pasien mungkin perlu menggunakan tetes mata dan mengikuti instruksi dokter mata untuk pemulihan yang cepat.</p>
+
+
+    <h1>Pencegahan</h1>
+    <p>Beberapa langkah yang dapat membantu mencegah atau menunda perkembangan katarak meliputi:</p>
+   
+        <p>◉Memakai kacamata hitam untuk melindungi mata dari sinar UV</p>
+        <p>◉Menghindari merokok</p>
+        <p>◉Mengontrol diabetes dan kondisi kesehatan lainnya</p>
+        <p>◉Mengonsumsi makanan sehat yang kaya antioksidan seperti buah dan sayuran</p>
+        <p>◉Menjaga berat badan sehat</p>
+    '''),
+    'retinopathy': Markup('''<h1>Diabetic Retinopathy</h1>
     <p>Diabetic retinopathy adalah komplikasi diabetes yang memengaruhi mata. Kondisi ini terjadi ketika tingginya kadar gula darah menyebabkan kerusakan pada pembuluh darah kecil di retina, yaitu jaringan sensitif cahaya yang terletak di bagian belakang mata. Diabetic retinopathy dapat menyebabkan pembengkakan, kebocoran, atau bahkan pertumbuhan pembuluh darah baru yang abnormal pada retina, yang pada akhirnya bisa menyebabkan kebutaan jika tidak diobati.</p>
 
     <h1>Tahapan Diabetic Retinopathy</h1>
@@ -115,10 +162,17 @@ condition_explanations = {
     ''')
 }
 
+# Define the Predictions model
+class Prediction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(255), nullable=False)
+    prediction = db.Column(db.String(50), nullable=False)
+    upload_date = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+# Home route
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        # Check if a file is provided
         if 'file' not in request.files:
             return redirect(request.url)
         
@@ -131,37 +185,54 @@ def index():
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
             
-            # Preprocess the image and make prediction
             img_array = preprocess_image(file_path)
             prediction = model.predict(img_array)
             
-            # Decode the prediction
             predicted_class = np.argmax(prediction, axis=1)[0]
-            class_labels = [ 'DR', 'glaucoma', 'normal']
+            class_labels = ['cataract', 'retinopathy', 'glaucoma', 'normal']
             predicted_label = class_labels[predicted_class]
             
-            # Get the explanation for the predicted condition
             explanation = condition_explanations[predicted_label]
+            
+            new_prediction = Prediction(filename=filename, prediction=predicted_label)
+            db.session.add(new_prediction)
+            db.session.commit()
             
             return render_template('index.html', filename=filename, prediction=predicted_label, explanation=explanation)
     
     return render_template('index.html', filename=None, prediction=None, explanation=None)
 
+# Route to display uploaded file
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
+
+@app.route('/delete/<int:result_id>', methods=['POST'])
+def delete_result(result_id):
+    result = Prediction.query.get_or_404(result_id)
+    db.session.delete(result)
+    db.session.commit()
+    return redirect(url_for('hasil'))
+
+
+# Route to display results
+@app.route('/hasil')
+def hasil():
+    results = Prediction.query.all()
+    return render_template('hasil.html', results=results)
+
+# Route to display team members
 @app.route('/anggota')
 def anggota():
     return render_template('anggota.html')
 
-@app.route('/hasil')
-def hasil():
-    return render_template('hasil.html')
-
+# Route to display homepage
 @app.route('/beranda')
 def beranda():
     return render_template('beranda.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False)  # Disable reloader
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True, use_reloader=False)
